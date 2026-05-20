@@ -1080,6 +1080,49 @@ Status: Firing
 
 🎉 SUCCESS!
 
+![Alert Fires Alert](screenshots/alert-fires-alert.png)
+
+# Update GitHub
+
+1. Authenticate GitHub CLI:
+
+```bash
+gh auth login
+```
+![GitHub CLI Authentication](screenshots/github-cli-authentication.png)
+
+2. Initialize Git:
+
+```bash
+git init
+```
+
+3. Add files:
+
+```bash
+git add .
+```
+![Adding Files Using Git Command](screenshots/adding-files-using-git.png)
+
+4. Commit:
+
+```bash
+git commit -m "Prometheus-Grafana-AWS"
+```
+![Tracking Added Files Using Git Command](screenshots/git-first-commit.png)
+
+5. Rename branch:
+
+```bash
+git branch -M main
+```
+
+6. Create GitHub repository:
+
+```bash
+gh repo create prometheus-grafana-aws --public --source=. --remote=origin --push
+```
+![Successful GitHub Repository Deployment](screenshots/successful-github-repo-deployment.png)
 ---
 
 # 🧠 CONCEPT VERIFICATION
@@ -1114,8 +1157,8 @@ You now understand:
 Terminate the EC2 instance when done:
 
 ```bash
-aws ec2 terminate-instances \
-  --instance-ids YOUR_INSTANCE_ID
+aws ec2 describe-instances
+aws ec2 terminate-instances --instance-ids YOUR_INSTANCE_ID
 ```
 
 ---
