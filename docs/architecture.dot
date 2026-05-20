@@ -1,0 +1,57 @@
+digraph PROMETHEUS_GRAFANA_AWS {
+    rankdir=TB;
+    fontname="Arial";
+
+    node [
+        shape=box,
+        style=filled,
+        fontname="Arial"
+    ];
+
+    user [
+        label="DevOps Engineer",
+        shape=ellipse,
+        fillcolor="lightgreen"
+    ];
+
+    app [
+        label="Node.js Monitoring App",
+        fillcolor="lightblue"
+    ];
+
+    exporter [
+        label="Node Exporter",
+        fillcolor="orange"
+    ];
+
+    prometheus [
+        label="Prometheus Server",
+        fillcolor="lightyellow"
+    ];
+
+    grafana [
+        label="Grafana Dashboards",
+        fillcolor="lightpink"
+    ];
+
+    ec2 [
+        label="AWS EC2 Ubuntu 24.04",
+        fillcolor="lightgrey"
+    ];
+
+    user -> grafana;
+    grafana -> prometheus;
+    prometheus -> exporter;
+    prometheus -> app;
+
+    subgraph cluster_aws {
+        label="Amazon Web Services";
+        style=dashed;
+
+        ec2;
+        app;
+        exporter;
+        prometheus;
+        grafana;
+    }
+}
