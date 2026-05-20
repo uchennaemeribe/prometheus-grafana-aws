@@ -1153,14 +1153,20 @@ You now understand:
 ---
 
 # 🧹 CLEANUP
+1. 
+```bash
+aws ec2 describe-security-groups --filters Name=group-name,Values='*' --query "SecurityGroups[?GroupName!='default'].[GroupId,GroupName,VpcId]" --output table
+aws ec2 delete-security-group --group-id sg-09b34d08123f0a9cb
+```
+![Security Group Deletion](screenshots/security-group-deletion.png)
 
-Terminate the EC2 instance when done:
+2. Terminate the EC2 instance when done:
 
 ```bash
-aws ec2 describe-instances
-aws ec2 terminate-instances --instance-ids YOUR_INSTANCE_ID
+aws ec2 describe-instances --query "Reservations[*].Instances[*].[InstanceId,PublicIpAddress,State.Name]" --output table
+aws ec2 terminate-instances --instance-ids i-0c34176b792d0a7bd
 ```
-
+![EC2 Instance Deletion](screenshots/ec2-instance-deletion.png)
 ---
 
 # 👤 Author
